@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actellic 50EC | Syngenta PPM Việt Nam</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green: #009639; /* Syngenta green */
+        --olive: #6b8018; /* tab underline */
+        --blue-card: #4f94d4; /* Product info background */
+        --gray-100: #f8f8f8;
+        --gray-300: #e0e0e0;
+        --text-dark: #222;
+        --text-light: #666;
+        --radius: 4px;
+        --max-width: 1200px;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+        background: #fff;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ───────── TOP STRIP ───────── */
+      .top-strip {
+        background: #000;
+        color: #fff;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.35rem 0.75rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .top-strip nav {
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      /* ───────── MAIN HEADER ───────── */
+      header {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--gray-300);
+        position: fixed;
+        top: 22px;
+        width: 100%;
+        z-index: 999;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .brand img {
+        height: 32px;
+      }
+
+      /* ───────── PRIMARY NAV ───────── */
+      .primary-nav {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .primary-nav a {
+        padding: 0.25rem 0;
+        position: relative;
+      }
+
+      .primary-nav a:hover:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -4px;
+        height: 2px;
+        background: var(--green);
+      }
+
+      /* ───────── BREADCRUMB ───────── */
+      .breadcrumb {
+        font-size: 0.8rem;
+        margin: 110px auto 0;
+        max-width: var(--max-width);
+        padding: 0 1rem;
+        color: var(--text-light);
+      }
+
+      .breadcrumb span {
+        margin-right: 0.25rem;
+      }
+
+      /* ───────── PRODUCT HERO CARD ───────── */
+      .hero-card {
+        max-width: var(--max-width);
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .hero-card .logo-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid var(--blue-card);
+        border-radius: var(--radius);
+        min-height: 280px;
+        background: #fff;
+        position: relative;
+      }
+
+      .hero-card .logo-box img {
+        max-width: 260px;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .thumbnail-nav {
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .thumbnail {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--gray-300);
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: all 0.2s;
+      }
+
+      .thumbnail:hover,
+      .thumbnail.active {
+        opacity: 1;
+        border-color: var(--green);
+      }
+
+      .hero-card .info-box {
+        background: var(--blue-card);
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 1.5rem;
+      }
+
+      .info-box h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .status {
+        display: inline-block;
+        background: #009fe3;
+        color: #fff;
+        font-size: 0.7rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      .info-table {
+        font-size: 0.9rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 0.75rem;
+      }
+
+      .info-table span {
+        display: block;
+      }
+
+      /* ───────── TAB BAR ───────── */
+      .tabs {
+        background: #fff;
+        position: sticky;
+        top: 70px;
+        border-bottom: 1px solid var(--gray-300);
+        z-index: 998;
+        transition: box-shadow 0.3s ease;
+      }
+
+      .tabs.scrolled {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .tabs nav {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: flex;
+        gap: 2rem;
+        overflow-x: auto;
+        padding: 0 1rem;
+        scrollbar-width: thin;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .tabs nav::-webkit-scrollbar {
+        height: 4px;
+        display: none; /* Chrome, Safari */
+      }
+
+      .tabs nav::-webkit-scrollbar-thumb {
+        background-color: var(--gray-300);
+        border-radius: 4px;
+      }
+
+      .tabs button {
+        background: none;
+        border: none;
+        padding: 0.9rem 0;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s ease;
+      }
+
+      .tabs button.active,
+      .tabs button:focus {
+        border-color: var(--olive);
+        color: var(--olive);
+      }
+
+      /* ───────── CONTENT SECTIONS ───────── */
+      .section {
+        max-width: var(--max-width);
+        margin: 2rem auto;
+        padding: 0 1rem;
+        display: none;
+        animation: fade 0.4s forwards;
+      }
+
+      .section.active {
+        display: block;
+      }
+
+      /* Đảm bảo vị trí section không bị che khi cuộn */
+      .section-anchor {
+        display: block;
+        position: relative;
+        top: -100px; /* Đảm bảo đủ khoảng cách để không bị thanh tabs che */
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      h2.section-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      h2.section-title:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 48px;
+        height: 2px;
+        background: var(--olive);
+      }
+
+      .subsection-title {
+        font-size: 1.25rem;
+        margin: 1.5rem 0 0.75rem;
+        color: var(--olive);
+      }
+
+      .bullet {
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+        list-style: disc;
+      }
+
+      .bullet li {
+        margin-bottom: 0.5rem;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: var(--olive);
+      }
+
+      .advantage {
+        color: var(--olive);
+        font-weight: 500;
+      }
+
+      /* ───────── DOWNLOAD BOX ───────── */
+      .download-box {
+        background: var(--blue-card);
+        border-radius: var(--radius);
+        color: #fff;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .download-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .download-item:last-child {
+        border-bottom: none;
+      }
+
+      .download-item a {
+        color: #fff;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* ───────── DATA TABLE ───────── */
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0 2rem;
+      }
+
+      .data-table th {
+        background: var(--gray-100);
+        text-align: left;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        border: 1px solid var(--gray-300);
+      }
+
+      .data-table td {
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--gray-300);
+      }
+
+      .data-table tr:nth-child(even) td {
+        background: var(--gray-100);
+      }
+
+      /* ───────── FEATURE CARDS ───────── */
+      .feature-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .feature-card {
+        border: 1px solid var(--gray-300);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        background: var(--gray-100);
+        height: 100%;
+      }
+
+      .feature-card h4 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        color: var(--olive);
+      }
+
+      .feature-card p {
+        margin-bottom: 0.75rem;
+      }
+
+      .feature-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ───────── USER GROUP ───────── */
+      .user-group {
+        margin-bottom: 2.5rem;
+      }
+
+      .user-group h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .user-group-description {
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1rem;
+      }
+
+      .benefit-card {
+        border: 1px solid var(--gray-300);
+        border-radius: var(--radius);
+        padding: 1.25rem;
+        height: 100%;
+      }
+
+      .benefit-card h4 {
+        margin-bottom: 0.75rem;
+        color: var(--olive);
+      }
+
+      /* ───────── PROCESS STEPS ───────── */
+      .process {
+        margin-bottom: 2.5rem;
+      }
+
+      .process-name {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .step {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .step-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: var(--olive);
+        color: white;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .step-content {
+        flex-grow: 1;
+      }
+
+      .step-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      /* ───────── ENVIRONMENTS ───────── */
+      .environments-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.25rem;
+        margin: 1.5rem 0;
+      }
+
+      .environment-card {
+        border: 1px solid var(--gray-300);
+        border-radius: var(--radius);
+        padding: 1.25rem;
+        background: var(--gray-100);
+        height: 100%;
+      }
+
+      .environment-card h4 {
+        margin-bottom: 0.75rem;
+        color: var(--olive);
+      }
+
+      /* ───────── FAQ ───────── */
+      .faq-item {
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--gray-300);
+        padding-bottom: 1.5rem;
+      }
+
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+
+      .faq-question {
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+      }
+
+      /* ───────── EVIDENCE ───────── */
+      .research-item {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--gray-300);
+      }
+
+      .research-item:last-child {
+        border-bottom: none;
+      }
+
+      .research-name {
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      /* ───────── SUPPORT ───────── */
+      .contact-info {
+        margin: 1.5rem 0;
+      }
+
+      .contact-item {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .contact-icon {
+        width: 24px;
+        text-align: center;
+      }
+
+      /* ───────── REFERENCES ───────── */
+      .references-list {
+        margin-top: 1rem;
+      }
+
+      .reference-item {
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--gray-300);
+      }
+
+      .reference-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+      }
+
+      .reference-toggle {
+        font-size: 1.5rem;
+        width: 20px;
+      }
+
+      .reference-content {
+        padding-left: 30px;
+        margin-top: 0.75rem;
+        display: none;
+      }
+
+      .reference-content.active {
+        display: block;
+      }
+
+      /* ───────── RELATED PRODUCTS ───────── */
+      .related {
+        max-width: var(--max-width);
+        margin: 3rem auto;
+        padding: 0 1rem;
+      }
+
+      .card-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .product-card {
+        border: 1px solid var(--gray-300);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .product-card:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
+      }
+
+      .product-card-image {
+        height: 160px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--gray-100);
+        border-bottom: 1px solid var(--gray-300);
+      }
+
+      .product-card-image img {
+        max-width: 80%;
+        max-height: 80%;
+        object-fit: contain;
+      }
+
+      .product-card-content {
+        padding: 1rem;
+      }
+
+      .product-card-category {
+        display: inline-block;
+        font-size: 0.75rem;
+        color: var(--text-light);
+        margin-bottom: 0.25rem;
+      }
+
+      .product-card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-card-specs {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        margin-bottom: 0.75rem;
+      }
+
+      .product-card-link {
+        display: inline-flex;
+        align-items: center;
+        color: var(--olive);
+        font-weight: 600;
+        font-size: 0.9rem;
+        gap: 0.25rem;
+      }
+
+      /* ───────── FOOTER ───────── */
+      footer {
+        background: #111;
+        color: #fff;
+        margin-top: 3rem;
+      }
+
+      .footer-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 3rem 1rem 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+      }
+
+      .footer-col h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+        position: relative;
+      }
+
+      .footer-col h3:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 40px;
+        height: 2px;
+        background: var(--blue-card);
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-contact {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .social-icon:hover {
+        background: var(--green);
+      }
+
+      .copyright {
+        text-align: center;
+        padding: 1.5rem;
+        background: #000;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.75rem;
+      }
+
+      /* ───────── ANIMATIONS ───────── */
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ───────── RESPONSIVE ───────── */
+      @media (max-width: 768px) {
+        .hero-card {
+          grid-template-columns: 1fr;
+        }
+
+        .info-table {
+          grid-template-columns: 1fr;
+        }
+
+        .tabs nav {
+          gap: 1rem;
+        }
+
+        .footer-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .feature-cards,
+        .benefits-grid,
+        .environments-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top utility strip -->
+    <div class="top-strip">
+      <span>GIỚI THIỆU</span>
+      <nav>
+        <a href="#">TÌM KIẾM</a>
+        <a href="#">SYNGENTA TOÀN CẦU</a>
+        <a href="#">ĐĂNG NHẬP</a>
+        <a href="#">VI ▾</a>
+      </nav>
+    </div>
+
+    <!-- Main header -->
+    <header>
+      <div class="brand">
+        <img src="https://i.imgur.com/dsdO1gC.png" alt="PPM logo" />
+        <img src="https://i.imgur.com/XaqXJws.png" alt="Syngenta Việt Nam" />
+      </div>
+      <nav class="primary-nav">
+        <a href="#">Trang Chủ</a>
+        <a href="#">Sản Phẩm</a>
+        <a href="#">Kinh Doanh</a>
+        <a href="#">Giải Pháp</a>
+        <a href="#">Tin Tức & Bài Viết</a>
+        <a href="#">Video</a>
+      </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <span>TRANG CHỦ / SẢN PHẨM / THUỐC DIỆT MUỖI /</span>
+      <strong>ACTELLIC 50EC</strong>
+    </div>
+
+    <!-- Product hero card -->
+    <section class="hero-card">
+      <div class="logo-box">
+        <img
+          src="https://placehold.co/400x150/e2e8f0/9ca3af?text=Actellic+50EC"
+          alt="Actellic 50EC"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="thumbnail-nav">
+          <div class="thumbnail active"></div>
+          <div class="thumbnail"></div>
+          <div class="thumbnail"></div>
+        </div>
+      </div>
+      <div class="info-box">
+        <h1>ACTELLIC 50EC</h1>
+        <span class="status">Đang bán</span>
+        <div class="info-table">
+          <span><strong>Cập nhật:</strong> 11/05/2025</span>
+          <span><strong>Quy cách:</strong> Chai 1 lít </span>
+          <span><strong>Số đăng ký:</strong><br />ĐK-BVTV-XXX</span>
+          <span><strong>Nhóm hóa chất:</strong> Lân hữu cơ</span>
+          <span
+            ><strong>Thành phần:</strong><br />Pirimiphos-methyl 50% EC (500
+            g/l)</span
+          >
+          <span><strong>Công thức:</strong> Nhũ dầu đậm đặc (EC)</span>
+          <span><strong>Nhóm tác động:</strong> IRAC 1B</span>
+          <span
+            ><strong>Cơ chế tác động:</strong> Ức chế enzyme
+            acetylcholinesterase</span
+          >
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.75rem">
+          Được WHO khuyến cáo sử dụng trong các chương trình kiểm soát vector
+          truyền bệnh.
+        </p>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <div class="tabs" id="tabNav">
+      <nav>
+        <button class="tab-link active" data-target="overview">
+          Tổng Quan
+        </button>
+        <button class="tab-link" data-target="application">Ứng Dụng</button>
+        <button class="tab-link" data-target="documents">Tài Liệu</button>
+      </nav>
+    </div>
+
+    <!-- TAB 1: TỔNG QUAN -->
+    <section id="overview" class="section active">
+      <span class="section-anchor" id="anchor-overview"></span>
+      <div id="technology">
+        <h2 class="section-title">Công Nghệ Độc Đáo</h2>
+        <p>
+          <strong>Actellic 50EC</strong> tạo nên một
+          <span class="highlight">giải pháp phun không gian đột phá</span> trên
+          môi trường ngoài trời. Sản phẩm được phát triển đặc biệt để kiểm soát
+          linh hoạt các vector truyền bệnh như muỗi. Công nghệ này có hiệu quả
+          vượt trội trong kiểm soát các loài muỗi Anopheles, Aedes, Culex, đặc
+          biệt hiệu nghiệm với quần thể muỗi kháng thuốc nhóm Clo hữu cơ, Lân
+          hữu cơ và Cúc tổng hợp.
+        </p>
+        <blockquote
+          style="
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-left: 4px solid var(--olive);
+            background: var(--gray-100);
+          "
+        >
+          <p style="font-style: italic">
+            "Actellic 50EC đã được WHO Pesticide Evaluation Scheme (WHOPES)
+            khuyến cáo sử dụng trong các chương trình kiểm soát vector truyền
+            bệnh, đặc biệt với muỗi Anopheles gambiae kháng hóa chất, duy trì
+            hiệu quả trong ít nhất 15 tuần."
+          </p>
+          <footer style="margin-top: 0.75rem; font-size: 0.9rem">
+            — WHO Pesticide Evaluation Scheme (WHOPES)
+          </footer>
+        </blockquote>
+      </div>
+
+      <div id="workflow">
+        <h2 class="section-title">Cách Thức Hoạt Động</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <div class="step-title">Tạo sương hóa chất siêu mịn</div>
+              <p>
+                Khi phun không gian, Actellic 50EC được sương hóa thành các hạt
+                siêu mịn (0.5-25 micron) thông qua phun mù nóng hoặc ULV, tạo
+                sương mù có khả năng khuếch tán rộng.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <div class="step-title">Kích hoạt cơ chế ba chiều</div>
+              <p>
+                Hoạt chất Pirimiphos-methyl kích hoạt cơ chế tác động ba chiều:
+                tiếp xúc, vị độc, xông hơi. Đây là dạng tiền thuốc được chuyển
+                hóa trong cơ thể côn trùng sang dạng oxon hoạt động.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <div class="step-title">Ức chế enzyme acetylcholinesterase</div>
+              <p>
+                Dạng oxon ức chế enzyme acetylcholinesterase bằng cách
+                phosphoryl hóa phần tử serine, ngăn enzyme phân hủy chất dẫn
+                truyền thần kinh acetylcholine.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <div class="step-title">Diệt côn trùng hiệu quả</div>
+              <p>
+                Sự tích lũy acetylcholine tại các synap thần kinh dẫn đến kích
+                thích liên tục các thụ thể cholinergic, gây hưng phấn thần kinh,
+                tê liệt và diệt muỗi, kể cả quần thể kháng với pyrethroid.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          Cơ chế độc đáo của Actellic 50EC mang lại hiệu quả vượt trội qua ba ưu
+          điểm:
+          <span class="advantage">tác động nhanh</span>,
+          <span class="advantage">hiệu quả với muỗi kháng thuốc</span>, và
+          <span class="advantage">khả năng phun không gian linh hoạt</span>.
+        </p>
+      </div>
+
+      <div id="features">
+        <h2 class="section-title">Đặc Tính Nổi Bật</h2>
+        <div class="feature-cards">
+          <div class="feature-card">
+            <h4>Công thức chuyên biệt cho phun không gian</h4>
+            <p>
+              <strong>Thông số kỹ thuật:</strong> Nồng độ Pirimiphos-methyl 50%
+              EC (500 g/l), được WHO khuyến cáo, độ nhớt tối ưu cho cả phun mù
+              nóng và ULV.
+            </p>
+            <p>
+              <strong>Lợi ích cho người dùng:</strong> Dễ sử dụng với nhiều
+              thiết bị phun, tiết kiệm chi phí vận chuyển và lưu trữ nhờ nồng độ
+              cao, an toàn khi sử dụng đúng hướng dẫn.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h4>Hiệu quả vượt trội với muỗi kháng thuốc</h4>
+            <p>
+              <strong>Thông số kỹ thuật:</strong> Hiệu quả với muỗi Anopheles
+              gambiae kháng hóa chất nhóm Cúc tổng hợp và carbamates trong ít
+              nhất 15 tuần.
+            </p>
+            <p>
+              <strong>Lợi ích cho người dùng:</strong> Giải pháp hiệu quả cho
+              khu vực có muỗi kháng thuốc, kéo dài tuổi thọ chương trình kiểm
+              soát véc-tơ, giảm nguy cơ bệnh truyền nhiễm.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h4>Linh hoạt trong ứng dụng phun không gian</h4>
+            <p>
+              <strong>Thông số kỹ thuật:</strong> Đa dạng phương pháp với liều
+              lượng chính xác: phun mù nóng - 100g/ha, phun ULV - 200g/ha
+            </p>
+            <p>
+              <strong>Lợi ích cho người dùng:</strong> Phù hợp đa dạng môi
+              trường ngoài trời, linh hoạt trong nhiều tình huống kiểm soát dịch
+              hại, hiệu quả kinh tế và thời gian.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: ỨNG DỤNG -->
+    <section id="application" class="section">
+      <span class="section-anchor" id="anchor-application"></span>
+      <div id="benefits">
+        <h2 class="section-title">Lợi Ích Cho Người Dùng</h2>
+
+        <div class="user-group">
+          <h3>Doanh nghiệp PCO (Pest Control Operators)</h3>
+          <p class="user-group-description">
+            Các công ty cung cấp dịch vụ diệt côn trùng, kiểm soát dịch hại cho
+            khu vực công cộng, thường đối mặt với thách thức kiểm soát muỗi trên
+            diện rộng và quần thể muỗi kháng thuốc.
+          </p>
+
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <h4>Giải pháp đa năng, tiết kiệm chi phí</h4>
+              <p>
+                Tương thích với nhiều phương pháp phun và thiết bị tiêu chuẩn,
+                giúp PCO tiết kiệm đầu tư. Một sản phẩm cho nhiều ứng dụng giảm
+                chi phí hàng tồn kho và đào tạo nhân viên.
+              </p>
+            </div>
+
+            <div class="benefit-card">
+              <h4>Nâng cao uy tín chuyên môn</h4>
+              <p>
+                Khả năng diệt hiệu quả quần thể muỗi kháng pyrethroid giúp PCO
+                giải quyết các trường hợp khó. Tác động hạ gục nhanh tạo ấn
+                tượng tức thì, tăng tỷ lệ hài lòng của khách hàng.
+              </p>
+            </div>
+
+            <div class="benefit-card">
+              <h4>Mở rộng cơ hội kinh doanh</h4>
+              <p>
+                Hiệu quả cao với các chương trình y tế công cộng giúp PCO tiếp
+                cận hợp đồng với chính phủ. Khả năng xử lý diện tích lớn cho
+                phép mở rộng dịch vụ sang khu công nghiệp, cảng và sân bay.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="user-group">
+          <h3>Chủ tài sản và quản lý kho bãi</h3>
+          <p class="user-group-description">
+            Những người quản lý khu dân cư, khu công nghiệp, kho bãi và cơ sở
+            thương mại ngoài trời cần giải pháp kiểm soát muỗi hiệu quả.
+          </p>
+
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <h4>Kiểm soát muỗi toàn diện, an toàn sức khỏe</h4>
+              <p>
+                Diệt hiệu quả muỗi trên diện rộng, giảm nguy cơ bệnh truyền
+                nhiễm như sốt xuất huyết, sốt rét, đảm bảo môi trường an toàn
+                cho người dân và nhân viên.
+              </p>
+            </div>
+
+            <div class="benefit-card">
+              <h4>Bảo vệ uy tín và vận hành không gián đoạn</h4>
+              <p>
+                Kiểm soát nhanh chóng sự bùng phát muỗi, ngăn ngừa khủng hoảng y
+                tế công cộng, duy trì hoạt động kinh doanh liên tục.
+              </p>
+            </div>
+
+            <div class="benefit-card">
+              <h4>Chi phí-hiệu quả cao</h4>
+              <p>
+                Chi phí xử lý thấp hơn trên mỗi m² so với phương pháp thông
+                thường, hiệu quả kéo dài giảm tần suất xử lý, tiết kiệm chi phí
+                dài hạn.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="instructions">
+        <h2 class="section-title">Hướng Dẫn Sử Dụng</h2>
+
+        <div class="process">
+          <div class="process-name">Phun mù nóng (Thermal Fogging)</div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <div class="step-title">Chuẩn bị dung dịch</div>
+                <p>
+                  Sử dụng Actellic 50EC với liều lượng 100g/ha. Tỷ lệ pha: 1:10
+                  (100 ml chế phẩm với 1 lít dầu diesel/dầu hỏa). Chuẩn bị thiết
+                  bị phun mù và đảm bảo mặc đầy đủ thiết bị bảo hộ cá nhân.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <div class="step-title">Thực hiện phun</div>
+                <p>
+                  Cho phép máy phun làm nóng 2-5 phút. Phun theo hướng vuông góc
+                  với hướng gió. Liều phun: 2 lít dung dịch đã pha cho 1 ha.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <div class="step-title">Kiểm tra và hoàn thành</div>
+                <p>
+                  Đảm bảo sương mù phân tán đều. Khuyến cáo người dân và vật
+                  nuôi không đi vào khu vực xử lý ít nhất 1 giờ sau khi phun.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="process">
+          <div class="process-name">Phun ULV (Ultra-Low Volume)</div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <div class="step-title">Chuẩn bị dung dịch</div>
+                <p>
+                  Sử dụng Actellic 50EC với liều lượng 200g/ha. Tỷ lệ pha: 1:5
+                  (200 ml chế phẩm với 1 lít dầu diesel/dầu hỏa). Chuẩn bị máy
+                  phun ULV đã hiệu chỉnh.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <div class="step-title">Thực hiện phun</div>
+                <p>
+                  Phun trong điều kiện tối ưu: gió nhẹ, nhiệt độ thích hợp, độ
+                  ẩm cao. Thời gian tốt nhất: sáng sớm hoặc chiều muộn. Liều
+                  phun: 2 lít dung dịch đã pha cho 1 ha.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <div class="step-title">Đánh giá hiệu quả</div>
+                <p>
+                  Kiểm tra định kỳ khu vực xử lý. Phun bổ sung nếu cần. Khuyến
+                  cáo người dân và vật nuôi không đi vào khu vực xử lý ít nhất 1
+                  giờ sau khi phun.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin: 2rem 0; text-align: center">
+          <img
+            src="https://placehold.co/800x400/e2e8f0/9ca3af?text=Hình+ảnh+minh+họa+phun+ULV"
+            alt="Hình ảnh minh họa hướng dẫn"
+            style="max-width: 100%; border-radius: var(--radius)"
+          />
+        </div>
+      </div>
+
+      <div id="environments">
+        <h2 class="section-title">Môi Trường Sử Dụng</h2>
+        <p>
+          Actellic 50EC với phương pháp phun không gian chỉ phù hợp sử dụng
+          ngoài trời, mang lại hiệu quả tối ưu trong các môi trường có nguy cơ
+          dịch bệnh do muỗi.
+        </p>
+
+        <div class="environments-grid">
+          <div class="environment-card">
+            <h4>Khu dân cư ngoài trời</h4>
+            <p>
+              Khu đô thị, khu nhà ở có hoạt động muỗi cao. Phun mù nóng đặc biệt
+              hiệu quả nhờ khả năng xâm nhập vào thực vật và vật cản. Ngăn ngừa
+              dịch bệnh sốt xuất huyết, sốt rét trong mùa cao điểm.
+            </p>
+          </div>
+
+          <div class="environment-card">
+            <h4>Công viên và không gian công cộng</h4>
+            <p>
+              Công viên, sân vận động, khu vui chơi ngoài trời. Phun ULV hiệu
+              quả cho không gian mở, kiểm soát nhanh chóng sự bùng phát muỗi
+              trước các sự kiện quan trọng.
+            </p>
+          </div>
+
+          <div class="environment-card">
+            <h4>Kho bãi và cơ sở công nghiệp</h4>
+            <p>
+              Nhà kho, bến cảng, nhà máy với không gian ngoài trời rộng lớn. Cả
+              hai phương pháp phun đều phù hợp tùy địa hình và thời tiết. Giảm
+              nguy cơ sức khỏe cho công nhân và ngăn muỗi xâm nhập.
+            </p>
+          </div>
+
+          <div class="environment-card">
+            <h4>Cảng và điểm nhập cảnh</h4>
+            <p>
+              Cảng biển, sân bay, trạm kiểm soát biên giới có nguy cơ muỗi ngoại
+              lai. Phun ULV hiệu quả cho kiểm soát nhanh chóng, ngăn chặn muỗi
+              mang mầm bệnh từ nước ngoài.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="faq">
+        <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Actellic 50EC có thể sử dụng trong nhà không?
+          </div>
+          <div class="faq-answer">
+            <p>
+              Không nên vì mùi nặng, Actellic 50EC được thiết kế chuyên dụng và
+              phát huy hiệu quả tối ưu với phương pháp phun không gian ngoài
+              trời.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Actellic 50EC có an toàn cho người và môi trường không?
+          </div>
+          <div class="faq-answer">
+            <p>
+              An toàn khi sử dụng đúng hướng dẫn. Độc tính thấp với tỷ lệ tử
+              vong cấp tính qua đường miệng 1500-1800 mg/kg và qua tiếp xúc da
+              >2000 mg/kg. Tuy nhiên, có thể gây kích ứng mắt trung bình và kích
+              ứng da nhẹ, nên cần sử dụng thiết bị bảo hộ phù hợp.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Actellic 50EC có hiệu quả đối với tất cả các loài muỗi không?
+          </div>
+          <div class="faq-answer">
+            <p>
+              Có hiệu quả với nhiều loài muỗi bao gồm Anopheles (muỗi gây sốt
+              rét), Aedes (muỗi gây sốt xuất huyết), và Culex (muỗi gây viêm não
+              Nhật Bản). Đặc biệt hiệu quả với muỗi kháng hóa chất, duy trì hiệu
+              quả trong ít nhất 15 tuần.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: TÀI LIỆU -->
+    <section id="documents" class="section">
+      <span class="section-anchor" id="anchor-documents"></span>
+      <div id="evidence">
+        <h2 class="section-title">Chứng Minh Hiệu Quả</h2>
+        <p>
+          Actellic 50EC đã được WHO Pesticide Evaluation Scheme (WHOPES) đánh
+          giá và khuyến cáo sử dụng trong các chương trình kiểm soát vector
+          truyền bệnh. Sản phẩm đã chứng minh hiệu quả vượt trội trong kiểm soát
+          muỗi, đặc biệt là các quần thể kháng thuốc.
+        </p>
+
+        <div class="research-item">
+          <div class="research-name">
+            Hiệu quả bền vững với muỗi Anopheles kháng thuốc
+          </div>
+          <div class="research-results">
+            <p>
+              Thử nghiệm chứng minh Actellic 50EC hiệu quả đặc biệt với muỗi
+              Anopheles gambiae kháng hóa chất nhóm Cúc tổng hợp và carbamates
+              trong ít nhất 15 tuần. Duy trì hiệu quả diệt muỗi cao với liều
+              lượng khuyến cáo, chứng minh giá trị vượt trội trong kiểm soát sốt
+              rét tại khu vực có vấn đề kháng thuốc.
+            </p>
+          </div>
+        </div>
+
+        <div class="research-item">
+          <div class="research-name">
+            Hiệu quả với nhiều loại vector truyền bệnh
+          </div>
+          <div class="research-results">
+            <p>
+              Actellic 50EC hiệu quả với đa dạng vector truyền bệnh bao gồm
+              Anopheles, Aedes, và Culex. Hiệu quả này giúp phòng ngừa nhiều
+              loại bệnh truyền nhiễm nguy hiểm, từ sốt rét đến sốt xuất huyết và
+              viêm não.
+            </p>
+          </div>
+        </div>
+
+        <div class="research-item">
+          <div class="research-name">
+            Hiệu quả trên quần thể muỗi kháng nhiều loại hóa chất
+          </div>
+          <div class="research-results">
+            <p>
+              Actellic 50EC có hiệu quả chống lại côn trùng kháng hóa chất như
+              Clo hữu cơ, Lân hữu cơ, Cúc tổng hợp. Giải pháp hiệu quả cho các
+              khu vực đã xuất hiện tình trạng kháng thuốc, đảm bảo kiểm soát
+              vector bền vững và dài hạn.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="quality">
+        <h2 class="section-title">Cam Kết Chất Lượng</h2>
+        <p>
+          Actellic 50EC được sản xuất bởi Syngenta, tập đoàn hàng đầu trong lĩnh
+          vực bảo vệ cây trồng và kiểm soát dịch hại. Sản phẩm tuân thủ các tiêu
+          chuẩn khắt khe:
+        </p>
+        <ul class="bullet">
+          <li>
+            Được WHO Pesticide Evaluation Scheme (WHOPES) khuyến nghị sử dụng
+          </li>
+          <li>Đáp ứng tiêu chuẩn ISO về quản lý chất lượng</li>
+          <li>
+            Đăng ký chính thức với Bộ Nông nghiệp và Phát triển Nông thôn Việt
+            Nam
+          </li>
+          <li>Sản xuất theo quy trình GMP đảm bảo chất lượng</li>
+          <li>Kiểm soát nghiêm ngặt về tạp chất, độ ổn định và tuổi thọ</li>
+        </ul>
+
+        <div class="download-box">
+          <div class="download-item">
+            <span>Giấy chứng nhận WHO WHOPES.pdf</span>
+            <a href="#" target="_blank">(2.4MB) ⭳</a>
+          </div>
+          <div class="download-item">
+            <span>Hướng dẫn sử dụng chi tiết Actellic 50EC.pdf</span>
+            <a href="#" target="_blank">(3.8MB) ⭳</a>
+          </div>
+          <div class="download-item">
+            <span>Phiếu An toàn Hóa chất (MSDS) - Actellic 50EC.pdf</span>
+            <a href="#" target="_blank">(1.2MB) ⭳</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="purchase">
+        <h2 class="section-title">Thông Tin Mua Hàng</h2>
+        <p>
+          Actellic 50EC được phân phối tại Việt Nam qua mạng lưới nhà phân phối
+          chính thức của Syngenta. Chỉ nên mua từ các đại lý và nhà phân phối ủy
+          quyền để đảm bảo chất lượng và hỗ trợ kỹ thuật.
+        </p>
+        <ul class="bullet">
+          <li><strong>Đóng gói:</strong> Chai 1 lít, thùng 12 lít</li>
+          <li>
+            <strong>Hỗ trợ kỹ thuật:</strong> Tư vấn miễn phí về sử dụng sản
+            phẩm
+          </li>
+          <li>
+            <strong>Bảo quản:</strong> Nơi khô ráo, thoáng mát, tránh ánh nắng,
+            nhiệt độ 5-35°C
+          </li>
+        </ul>
+      </div>
+
+      <div id="support">
+        <h2 class="section-title">Thông Tin Hỗ Trợ</h2>
+        <p>Để được tư vấn chi tiết về Actellic 50EC, vui lòng liên hệ:</p>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>support@syngenta.com.vn</div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>(0283) 3775 6200</div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🔥</div>
+            <div>(0283) 3775 6288 (Hỗ trợ cấp cứu)</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="references">
+        <h2 class="section-title">Tài Liệu Tham Khảo</h2>
+        <p>
+          <em
+            >Phần tài liệu tham khảo này có thể khá dài và ít người đọc chi
+            tiết. Vì vậy, nội dung sẽ được hiển thị theo dạng có thể mở rộng với
+            dấu "+" ở đầu mỗi mục. Người đọc có thể nhấn vào dấu "+" để xem nội
+            dung đầy đủ của mỗi tài liệu tham khảo.</em
+          >
+        </p>
+
+        <div class="references-list">
+          <div class="reference-item">
+            <div class="reference-header" data-ref="1">
+              <div class="reference-toggle">+</div>
+              <div>
+                World Health Organization, "WHO Recommended Insecticides for
+                Space Spraying Against Mosquitoes"
+              </div>
+            </div>
+            <div class="reference-content" id="ref-1">
+              <p>
+                World Health Organization, "WHO Recommended Insecticides for
+                Space Spraying Against Mosquitoes," WHO Technical Report,
+                Geneva, 2019.
+              </p>
+            </div>
+          </div>
+
+          <div class="reference-item">
+            <div class="reference-header" data-ref="2">
+              <div class="reference-toggle">+</div>
+              <div>
+                R. N'Guessan et al., "Chlorfenapyr: a pyrrole insecticide for
+                the control of pyrethroid or DDT resistant Anopheles gambiae
+                mosquitoes"
+              </div>
+            </div>
+            <div class="reference-content" id="ref-2">
+              <p>
+                R. N'Guessan et al., "Chlorfenapyr: a pyrrole insecticide for
+                the control of pyrethroid or DDT resistant Anopheles gambiae
+                mosquitoes," Acta Tropica, vol. 102, no. 1, pp. 69-78, 2019.
+              </p>
+            </div>
+          </div>
+
+          <div class="reference-item">
+            <div class="reference-header" data-ref="3">
+              <div class="reference-toggle">+</div>
+              <div>
+                A. Kumar et al., "Comparative efficacy of organophosphate
+                insecticides against pyrethroid resistant vectors in different
+                parts of India"
+              </div>
+            </div>
+            <div class="reference-content" id="ref-3">
+              <p>
+                A. Kumar et al., "Comparative efficacy of organophosphate
+                insecticides against pyrethroid resistant vectors in different
+                parts of India," J. Entomol. Zool. Stud., vol. 5, pp. 1340-1345,
+                2020.
+              </p>
+            </div>
+          </div>
+
+          <div class="reference-item">
+            <div class="reference-header" data-ref="4">
+              <div class="reference-toggle">+</div>
+              <div>
+                Syngenta Global, "Efficacy Assessment of Actellic 50EC in
+                Thermal Fogging Applications against Pyrethroid-Resistant
+                Anopheles"
+              </div>
+            </div>
+            <div class="reference-content" id="ref-4">
+              <p>
+                Syngenta Global, "Efficacy Assessment of Actellic 50EC in
+                Thermal Fogging Applications against Pyrethroid-Resistant
+                Anopheles," Syngenta Technical Report, Basel, 2021.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related products -->
+    <section class="related">
+      <h2 class="section-title">Sản Phẩm Liên Quan</h2>
+
+      <div class="card-row">
+        <div class="product-card">
+          <div class="product-card-image">
+            <img
+              src="https://placehold.co/300x200/e2e8f0/9ca3af?text=Icon+25EC"
+              alt="Icon 25EC"
+            />
+          </div>
+          <div class="product-card-content">
+            <span class="product-card-category">THUỐC DIỆT MUỖI</span>
+            <h3 class="product-card-title">Icon 25EC</h3>
+            <div class="product-card-specs">
+              Lambda-cyhalothrin 25g/l<br />
+              Nhũ dầu đậm đặc (EC)
+            </div>
+            <a href="#" class="product-card-link">Xem thêm →</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-image">
+            <img
+              src="https://placehold.co/300x200/e2e8f0/9ca3af?text=Demand+CS"
+              alt="Demand CS"
+            />
+          </div>
+          <div class="product-card-content">
+            <span class="product-card-category">THUỐC DIỆT MUỖI</span>
+            <h3 class="product-card-title">Demand CS</h3>
+            <div class="product-card-specs">
+              Lambda-cyhalothrin 25g/l<br />
+              Huyền phù nang vi gói (CS)
+            </div>
+            <a href="#" class="product-card-link">Xem thêm →</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-image">
+            <img
+              src="https://placehold.co/300x200/e2e8f0/9ca3af?text=Optigard+ZT"
+              alt="Optigard ZT"
+            />
+          </div>
+          <div class="product-card-content">
+            <span class="product-card-category">THUỐC DIỆT KIẾN</span>
+            <h3 class="product-card-title">Optigard ZT</h3>
+            <div class="product-card-specs">
+              Thiamethoxam 25g/kg<br />
+              Huyền phù đậm đặc (SC)
+            </div>
+            <a href="#" class="product-card-link">Xem thêm →</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-image">
+            <img
+              src="https://placehold.co/300x200/e2e8f0/9ca3af?text=Advion+Gel"
+              alt="Advion Gel"
+            />
+          </div>
+          <div class="product-card-content">
+            <span class="product-card-category">THUỐC DIỆT GIÁN</span>
+            <h3 class="product-card-title">Advion Gel</h3>
+            <div class="product-card-specs">
+              Indoxacarb 0.6%<br />
+              Gel mồi (RB)
+            </div>
+            <a href="#" class="product-card-link">Xem thêm →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-col">
+          <h3>Liên Hệ</h3>
+          <div class="footer-contact">
+            <span>📞</span>
+            <span>(0283) 3775 6200</span>
+          </div>
+          <div class="footer-contact">
+            <span>🏢</span>
+            <span>(0283) 3775 6201</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Liên Kết Nhanh</h3>
+          <ul>
+            <li><a href="#">Sản Phẩm</a></li>
+            <li><a href="#">Giải Pháp Cây Trồng</a></li>
+            <li><a href="#">Về Chúng Tôi</a></li>
+            <li><a href="#">Tin Tức & Bài Viết</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Tài Nguyên</h3>
+          <ul>
+            <li><a href="#">Tài Liệu Sản Phẩm</a></li>
+            <li><a href="#">Nhãn An Toàn</a></li>
+            <li><a href="#">Hướng Dẫn Ứng Dụng</a></li>
+            <li><a href="#">Nhà Phân Phối</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Mạng Xã Hội</h3>
+          <div class="social-links">
+            <a href="#" class="social-icon">𝕏</a>
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">▶</a>
+          </div>
+          <address
+            style="margin-top: 1rem; font-style: normal; font-size: 0.9rem"
+          >
+            Syngenta Việt Nam<br />
+            Tầng 12, Tòa nhà Metropolitan, 235 Đồng Khởi<br />
+            Quận 1, Thành phố Hồ Chí Minh
+          </address>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © <span id="year"></span> Syngenta. Bảo lưu mọi quyền.
+        <div class="footer-links">
+          <a href="#">Chính Sách Bảo Mật</a>
+          <a href="#">Điều Khoản Sử Dụng</a>
+          <a href="#">iSyn</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Set current year in footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Tab switching (event delegation) - Cải tiến để cuộn tới vị trí cụ thể
+      document.querySelector("#tabNav nav").addEventListener("click", (e) => {
+        const btn = e.target.closest(".tab-link");
+        if (!btn) return;
+
+        // Đánh dấu tab đang active
+        document
+          .querySelectorAll(".tab-link")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // Hiển thị section tương ứng
+        document
+          .querySelectorAll(".section")
+          .forEach((s) => s.classList.remove("active"));
+        document.getElementById(btn.dataset.target).classList.add("active");
+
+        // Cuộn đến section-anchor tương ứng
+        const anchor = document.getElementById(`anchor-${btn.dataset.target}`);
+        if (anchor) {
+          // Sử dụng setTimeout để đảm bảo section đã được hiển thị trước khi cuộn
+          setTimeout(() => {
+            const tabsHeight = document.querySelector(".tabs").offsetHeight;
+            const anchorPosition =
+              anchor.getBoundingClientRect().top + window.pageYOffset;
+            // Trừ đi chiều cao của thanh tabs + khoảng trống bổ sung (20px)
+            window.scrollTo({
+              top: anchorPosition - tabsHeight - 20,
+              behavior: "smooth",
+            });
+          }, 10);
+        }
+      });
+
+      // Xử lý hiệu ứng bóng cho thanh tabs khi cuộn
+      window.addEventListener("scroll", () => {
+        const tabs = document.querySelector(".tabs");
+        const scrollPosition = window.scrollY;
+
+        // Thêm bóng cho tabs khi đã cuộn xuống
+        if (scrollPosition > 100) {
+          tabs.classList.add("scrolled");
+        } else {
+          tabs.classList.remove("scrolled");
+        }
+      });
+
+      // Thumbnail switching
+      document.querySelectorAll(".thumbnail").forEach((thumb, index) => {
+        thumb.addEventListener("click", () => {
+          document
+            .querySelectorAll(".thumbnail")
+            .forEach((t) => t.classList.remove("active"));
+          thumb.classList.add("active");
+          // Here you would switch the main image if you had multiple product images
+          console.log(`Switched to image ${index + 1}`);
+        });
+      });
+
+      // References toggle
+      document.querySelectorAll(".reference-header").forEach((header) => {
+        header.addEventListener("click", () => {
+          const refId = header.getAttribute("data-ref");
+          const content = document.getElementById(`ref-${refId}`);
+          const toggle = header.querySelector(".reference-toggle");
+
+          if (content.classList.contains("active")) {
+            content.classList.remove("active");
+            toggle.textContent = "+";
+          } else {
+            content.classList.add("active");
+            toggle.textContent = "-";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
